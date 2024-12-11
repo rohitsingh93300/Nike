@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import Logo from "../assets/logo2.png";
 // import { MdMenu } from "react-icons/md";
 import { HiMenuAlt1, HiMenuAlt3 } from "react-icons/hi";
@@ -6,43 +6,21 @@ import { FaRegUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { UpdateFollower } from "react-mouse-follower";
 import ResponsiveMenu from "./ResponsiveMenu";
-import { CarTaxiFront, ShoppingCart } from "lucide-react";
+import { NavbarMenu } from "./Navbar";
 import { Link } from "react-router-dom";
+import { ShoppingCart } from "lucide-react";
+import { ShopContext } from "../Context/ShopContext";
 
-export const NavbarMenu = [
-  {
-    id: 1,
-    title: "Home",
-    link: "/",
-  },
-  {
-    id: 2,
-    title: "Mens",
-    link: "/mens",
-  },
-  {
-    id: 3,
-    title: "Womens",
-    link: "/womens",
-  },
-  {
-    id: 4,
-    title: "Kids",
-    link: "/kids",
-  },
-  {
-    id: 5,
-    title: "Contact",
-    link: "/contact",
-  },
-];
-const Navbar = () => {
+
+const Navbar2 = () => {
   const [showMenu, setShowMenu] = useState(false)
   const toggleMenu = () => {
     setShowMenu(!showMenu)
-}
+  }
+
+  const { getTotalCartItems } = useContext(ShopContext)
   return (
-    <div className=" text-white py-8">
+    <div className=" text-black bg-gray-100 py-2 z-10">
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -51,7 +29,7 @@ const Navbar = () => {
       >
         {/* logo section */}
         <div>
-          <img src={Logo} alt="" className="max-w-[100px] invert" />
+          <img src={Logo} alt="" className="max-w-[100px] " />
         </div>
         {/* Menu section */}
         <div className="hidden md:block">
@@ -76,7 +54,6 @@ const Navbar = () => {
                 </UpdateFollower>
               </li>
             ))}
-
             <UpdateFollower
               mouseOptions={{
                 backgroundColor: "white",
@@ -86,9 +63,9 @@ const Navbar = () => {
                 mixBlendMode: "difference",
               }}
             >
-              <Link to="/cart"><button className="text-xl ps-14">
-                <ShoppingCart />
-              </button></Link>
+              <Link to="/cart"><div className="  relative">
+                <ShoppingCart /><div className='bg-[#138695]  w-5 absolute -top-3 -right-2 flex items-center justify-center rounded-full text-white'>{getTotalCartItems()}</div>
+              </div></Link>
             </UpdateFollower>
             <UpdateFollower
               mouseOptions={{
@@ -107,21 +84,24 @@ const Navbar = () => {
         </div>
         <div className="flex gap-8 md:hidden z-50">
 
-       <Link to="/cart"><ShoppingCart/></Link>
-       {/* Mobile Hamburger icon */}
-       {showMenu ? (
-                        <HiMenuAlt1
-                            onClick={toggleMenu}
-                            className='cursor-pointer transition-all md:hidden z-50'
-                            size={30}
-                        />
-                    ) : (
-                        <HiMenuAlt3
-                            onClick={toggleMenu}
-                            className='cursor-pointer transition-all md:hidden z-50'
-                            size={30}
-                        />
-                    )}
+        <Link to='/cart'><div className='relative w-10 z-50'>
+                        <ShoppingCart /><div className='bg-[#138695] z-40 w-5 absolute -top-2 right-1 flex items-center justify-center rounded-full text-white'>{getTotalCartItems()}</div>
+                    </div>
+                    </Link>
+          {/* Mobile Hamburger icon */}
+          {showMenu ? (
+            <HiMenuAlt1
+              onClick={toggleMenu}
+              className='cursor-pointer transition-all md:hidden z-50'
+              size={30}
+            />
+          ) : (
+            <HiMenuAlt3
+              onClick={toggleMenu}
+              className='cursor-pointer transition-all md:hidden z-50'
+              size={30}
+            />
+          )}
         </div>
       </motion.div>
       <ResponsiveMenu showMenu={showMenu} setShowMenu={setShowMenu} />
@@ -129,4 +109,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar2;

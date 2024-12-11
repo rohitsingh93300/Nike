@@ -1,8 +1,8 @@
 import React from "react";
-import Fanta1 from "../assets/fanta1.png";
-import Fanta2 from "../assets/fanta2.png";
-import Fanta3 from "../assets/fanta3.png";
-import { FaWhatsapp } from "react-icons/fa";
+import Fanta1 from "../assets/Shoes1.png";
+import Fanta2 from "../assets/Shoes2.png";
+import Fanta3 from "../assets/Shoes3.png";
+// import { FaWhatsapp } from "react-icons/fa";
 import { UpdateFollower } from "react-mouse-follower";
 import { AnimatePresence, easeInOut, motion } from "framer-motion";
 import Navbar from "../components/Navbar";
@@ -37,32 +37,32 @@ const headphoneData = [
   {
     id: 1,
     image: Fanta1,
-    title: "Orange Fanta",
+    title: "Jordan Luka 3 PF",
     subtitle:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iusto minima ad ut id eos iusto minima ad ut id eos ad ut id eos",
     price: "$40",
-    modal: "Orange",
-    bgColor: "#cf4f00",
+    modal: "Sports",
+    bgColor: "#138695",
   },
   {
     id: 2,
     image: Fanta2,
-    title: "Cola Zero",
+    title: "Nike G.T. Cut 3 EP",
     subtitle:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iusto minima ad ut id eos iusto minima ad ut id eos ad ut id eos",
     price: "$100",
-    modal: "Zero",
+    modal: "Running",
     bgColor: "#727272",
   },
   {
     id: 3,
     image: Fanta3,
-    title: "Coca Cola",
+    title: "Nike G.T. Cut Academy EP",
     subtitle:
       "Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae iusto minima ad ut id eos iusto minima ad ut id eos ad ut id eos",
     price: "$100",
-    modal: "Cola",
-    bgColor: "#ac1a00",
+    modal: "Sports",
+    bgColor: "#698869",
   },
 ];
 const Hero = () => {
@@ -145,7 +145,7 @@ const Hero = () => {
                     animate="show"
                     exit="exit"
                     style={{ color: activeData.bgColor }}
-                    className="px-4 py-2 bg-white inline-block font-normal rounded-sm"
+                    className="px-4 py-2 bg-white inline-block font-normal rounded-md"
                   >
                     Order Now
                   </motion.button>
@@ -172,9 +172,9 @@ const Hero = () => {
                 transition={{ duration: 0.8, delay: 0.2, ease: "easeInOut" }}
                 className="grid grid-cols-3 gap-10"
               >
-                {headphoneData.map((item) => {
+                {headphoneData.map((item, index) => {
                   return (
-                    <UpdateFollower
+                    <UpdateFollower key={index}
                       mouseOptions={{
                         backgroundColor: item.bgColor,
                         zIndex: 9999,
@@ -222,9 +222,9 @@ const Hero = () => {
             <AnimatePresence mode="wait">
               <motion.img
                 key={activeData.id}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.4, delay: 0, ease: easeInOut }}
+                initial={{ opacity: 0, x: 100, rotate: 0 }}
+                animate={{ opacity: 1, x: 0, rotate:-35 }}
+                transition={{ duration: 0.8, delay: 0, ease: easeInOut }}
                 exit={{
                   opacity: 0,
                   // scale: 0.9,
@@ -236,7 +236,7 @@ const Hero = () => {
                 }}
                 src={activeData.image}
                 alt=""
-                className="w-[150px] md:w-[200px] xl:w-[350px] img-shadow relative z-10"
+                className="w-[300px] md:w-[200px] lg:w-[600px] img-shadow lg:absolute lg:top-[10%]  z-10"
               />
             </AnimatePresence>
             <AnimatePresence mode="wait">
@@ -258,13 +258,7 @@ const Hero = () => {
                 {activeData.modal}
               </motion.div>
             </AnimatePresence>
-          </div>
-          {/* ______ WhatsApp Icon ______ */}
-          <div className="text-3xl text-white fixed bottom-10 right-10 hover:rotate-[360deg] duration-500 z-[99999] mix-blend-difference">
-            <a href="">
-              <FaWhatsapp />
-            </a>
-          </div>
+          </div>        
         </div>
       </motion.section>
     </>
