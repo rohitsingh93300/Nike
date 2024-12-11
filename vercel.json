@@ -1,0 +1,8 @@
+{
+    "routes": [
+      { "src": "/mens", "dest": "/" },
+      { "src": "/womens", "dest": "/" },
+      { "src": "/kids", "dest": "/" },
+      { "src": "/contact", "dest": "/" }
+    ]
+  }
