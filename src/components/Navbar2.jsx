@@ -29,7 +29,7 @@ const Navbar2 = () => {
       >
         {/* logo section */}
         <div>
-          <img src={Logo} alt="" className="max-w-[100px] " />
+          <Link to='/'><img src={Logo} alt="" className="max-w-[100px] " /></Link>
         </div>
         {/* Menu section */}
         <div className="hidden md:block">
@@ -45,12 +45,12 @@ const Navbar2 = () => {
                     mixBlendMode: "difference",
                   }}
                 >
-                  <a
-                    href={item.link}
+                  <Link
+                    to={item.link}
                     className="inline-block text-base font-semibold py-2 px-3 uppercase"
                   >
                     {item.title}
-                  </a>
+                  </Link>
                 </UpdateFollower>
               </li>
             ))}

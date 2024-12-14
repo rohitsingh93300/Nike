@@ -6,7 +6,7 @@ import { FaRegUser } from "react-icons/fa";
 import { motion } from "framer-motion";
 import { UpdateFollower } from "react-mouse-follower";
 import ResponsiveMenu from "./ResponsiveMenu";
-import { CarTaxiFront, ShoppingCart } from "lucide-react";
+import { ShoppingCart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 export const NavbarMenu = [
@@ -67,12 +67,12 @@ const Navbar = () => {
                     mixBlendMode: "difference",
                   }}
                 >
-                  <a
-                    href={item.link}
+                  <Link
+                    to={item.link}
                     className="inline-block text-base font-semibold py-2 px-3 uppercase"
                   >
                     {item.title}
-                  </a>
+                  </Link>
                 </UpdateFollower>
               </li>
             ))}
